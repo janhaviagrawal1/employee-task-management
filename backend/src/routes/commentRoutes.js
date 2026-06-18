@@ -1,0 +1,40 @@
+const express = require("express");
+
+const router = express.Router();
+
+const authMiddleware = require(
+  "../middlewares/authMiddleware"
+);
+
+const {
+  createComment,
+  getComments,
+  updateComment,
+  deleteComment,
+} = require("../controllers/commentController");
+
+router.post(
+  "/",
+  authMiddleware,
+  createComment
+);
+
+router.get(
+  "/",
+  authMiddleware,
+  getComments
+);
+
+router.put(
+  "/:id",
+  authMiddleware,
+  updateComment
+);
+
+router.delete(
+  "/:id",
+  authMiddleware,
+  deleteComment
+);
+
+module.exports = router;
